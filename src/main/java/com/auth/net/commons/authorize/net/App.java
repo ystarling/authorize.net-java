@@ -1,0 +1,13 @@
+package com.auth.net.commons.authorize.net;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+    }
+}
