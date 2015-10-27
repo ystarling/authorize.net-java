@@ -23,7 +23,7 @@ public class AIMauthCaptureTransactionDemo {
 
 		// create transaction
 		Transaction authCaptureTransaction = merchant.createAIMTransaction
-				(TransactionType.AUTH_CAPTURE, new BigDecimal("15.00"));
+				(TransactionType.AUTH_CAPTURE, new BigDecimal("50.00"));
 
 		authCaptureTransaction.setCreditCard(creditCard);
 
