@@ -61,7 +61,7 @@ public class AuthorizeCreditCard {
 				TransactionResponse result = response.getTransactionResponse();
 				if (result.getResponseCode().equals("1")) {
 					System.out.println("-----------------------------");
-					System.out.println("Transaction ID :" +result.getTransId());
+					System.out.println("Transaction ID  :" +result.getTransId());
 					System.out.println("Account No      : "+result.getAccountNumber());
 					System.out.println("Account Type    : "+result.getAccountType());
 					System.out.println("AuthCode        : "+result.getAuthCode());
