@@ -11,3 +11,7 @@
 11/05/15 00:48:44,671:  INFO [pool-1-thread-1] (net.authorize.util.LogHelper:24) - Use Proxy: 'false'
 11/05/15 00:55:15,904:  INFO [pool-1-thread-1] (net.authorize.util.LogHelper:24) - Use Proxy: 'false'
 11/05/15 00:57:31,250:  INFO [pool-1-thread-1] (net.authorize.util.LogHelper:24) - Use Proxy: 'false'
+11/05/15 01:00:09,392:  INFO [pool-1-thread-1] (net.authorize.util.LogHelper:24) - Use Proxy: 'false'
+11/05/15 01:00:36,652:  INFO [pool-1-thread-1] (net.authorize.util.LogHelper:24) - Use Proxy: 'false'
+11/05/15 01:01:31,408:  INFO [pool-1-thread-1] (net.authorize.util.LogHelper:24) - Use Proxy: 'false'
+11/05/15 01:02:11,413:  INFO [pool-1-thread-1] (net.authorize.util.LogHelper:24) - Use Proxy: 'false'
