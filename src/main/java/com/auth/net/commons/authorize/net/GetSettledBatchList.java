@@ -1,15 +1,15 @@
 package com.auth.net.commons.authorize.net;
 
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 
 import net.authorize.Environment;
+import net.authorize.api.contract.v1.ArrayOfBatchDetailsType;
+import net.authorize.api.contract.v1.BatchDetailsType;
 import net.authorize.api.contract.v1.GetSettledBatchListRequest;
 import net.authorize.api.contract.v1.GetSettledBatchListResponse;
 import net.authorize.api.contract.v1.MerchantAuthenticationType;
@@ -22,7 +22,6 @@ public class GetSettledBatchList {
 	public static final String transactionKey= "8W6YC22g58PrkEvA";
 
 	public static void main(String[] args) throws ParseException, DatatypeConfigurationException {
-		GregorianCalendar gc=new GregorianCalendar();
 		ApiOperationBase.setEnvironment(Environment.SANDBOX);
 
 		MerchantAuthenticationType merchantAuthenticationType= new MerchantAuthenticationType() ;
@@ -31,31 +30,46 @@ public class GetSettledBatchList {
 		ApiOperationBase.setMerchantAuthentication(merchantAuthenticationType);
 
 		GetSettledBatchListRequest getRequest = new GetSettledBatchListRequest();
-		
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-		
-		Date firstSettlementDate = df.parse("2015-01-26");
-		gc.setTime(firstSettlementDate);
-		
-		Date lastSettlementDate = df.parse("2015-05-05");
-		gc.setTime(lastSettlementDate);
-		
-		getRequest.setFirstSettlementDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(gc));
-		getRequest.setLastSettlementDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(gc));
 		getRequest.setMerchantAuthentication(merchantAuthenticationType);
+
+		try {
+			// Set first settlement date in format (year, month, day)(should not be less that 31 days since last settlement date)
+			GregorianCalendar pastDate = new GregorianCalendar();
+			pastDate.add(Calendar.DAY_OF_YEAR, -7);
+			System.out.println("Past Date : "+pastDate);
+			getRequest.setFirstSettlementDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(pastDate));
+
+			// Set last settlement date in format (year, month, day) (should not be greater that 31 days since first settlement date)
+			GregorianCalendar currentDate = new GregorianCalendar();
+			getRequest.setLastSettlementDate(DatatypeFactory.newInstance().newXMLGregorianCalendar(currentDate));
+
+		} catch (Exception ex) {
+			System.out.println("Error : while setting dates");
+			ex.printStackTrace();
+		}
+
 		GetSettledBatchListController controller = new GetSettledBatchListController(getRequest);
 		controller.execute();
-		
-		GetSettledBatchListResponse getResponse = new GetSettledBatchListResponse();
-		if (getResponse!=null) {
+		GetSettledBatchListResponse getResponse = controller.getApiResponse();
+		if (getResponse != null) {
 
 			if (getResponse.getMessages().getResultCode() == MessageTypeEnum.OK) {
+
 				System.out.println(getResponse.getMessages().getMessage().get(0).getCode());
 				System.out.println(getResponse.getMessages().getMessage().get(0).getText());
-			}
-			else{
+
+				ArrayOfBatchDetailsType batchList = getResponse.getBatchList();
+				if (batchList != null) {
+					System.out.println("List of Settled Transaction :");
+					for (BatchDetailsType batch : batchList.getBatch()) {
+						System.out.println(batch.getBatchId() + " - " + batch.getMarketType() + " - " + batch.getPaymentMethod() + " - " + batch.getProduct() + " - " + batch.getSettlementState());
+					}
+				}
+			} else {
 				System.out.println("Failed to get settled batch list:  " + getResponse.getMessages().getResultCode());
+				System.out.println(getResponse.getMessages().getMessage().get(0).getText());
 			}
 		}
 	}
 }
+

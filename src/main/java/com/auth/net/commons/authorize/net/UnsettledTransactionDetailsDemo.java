@@ -31,22 +31,21 @@ public class UnsettledTransactionDetailsDemo {
 
 		System.out.println("======= Unsettled Transaction List ==============");
 		System.out.println("Result Code : ["+ result.getResultCode() +"]");
-		System.out.println("Code : ["+ result.getMessages().get(0).getCode() +"]");
-		System.out.println("Code : ["+ result.getMessages().get(0).getText() +"]");
+		System.out.println("Code        : ["+ result.getMessages().get(0).getCode() +"]");
+		System.out.println("Code        : ["+ result.getMessages().get(0).getText() +"]");
 
 		ArrayList<TransactionDetails> newReportingDetails = result.getReportingDetails().getTransactionDetailList();
 		for (int i = 0; i < newReportingDetails.size(); i++) {
 			TransactionDetails td = newReportingDetails.get(i);
-			System.out.println("======================" + i +" Start ...");
-			System.out.println("Transaction ID : [" + td.getTransId()+"]");
-			System.out.println("Transaction Status ["+td.getTransactionStatus()+"]");
-			System.out.println("Transaction Type [" + td.getTransactionType()+"]");
-			System.out.println("Account Number [" + td.getAccountNumber() +"]");
-			System.out.println("Account Tyep : ["+ td.getAccountType() +"]");
-			System.out.println("Settled Amount :["+ td.getSettleAmount()+"]");
-			System.out.println("Submit TIme Local ["+td.getSubmitTimeLocal()+"]");
-			System.out.println("Submit TIme UTC ["+td.getSubmitTimeUTC()+"]");
-			System.out.println("======================" + i +" end ...");
+			System.out.println("------------------------------------");
+			System.out.println("Transaction ID     : [" + td.getTransId()+"]");
+			System.out.println("Transaction Status : ["+td.getTransactionStatus()+"]");
+			System.out.println("Transaction Type   : [" + td.getTransactionType()+"]");
+			System.out.println("Account Number     : [" + td.getAccountNumber() +"]");
+			System.out.println("Account Tyep       : ["+ td.getAccountType() +"]");
+			System.out.println("Settled Amount     : ["+ td.getSettleAmount()+"]");
+			System.out.println("Submit TIme Local  : ["+td.getSubmitTimeLocal()+"]");
+			System.out.println("Submit TIme UTC    : ["+td.getSubmitTimeUTC()+"]");
 		}
 	}
 }

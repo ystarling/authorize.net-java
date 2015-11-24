@@ -42,10 +42,10 @@ public class GetTransactionDetails {
 		}
 
 		System.out.println("---------------------------------------");
-		System.out.println("Auth Amount : "+transactionDetailsType.getAuthAmount());
-		System.out.println("Auth Code   : "+transactionDetailsType.getAuthCode());
+		System.out.println("Auth Amount                 : "+transactionDetailsType.getAuthAmount());
+		System.out.println("Auth Code                   : "+transactionDetailsType.getAuthCode());
 		System.out.println("Response Reason Description : "+transactionDetailsType.getResponseReasonDescription());
-		System.out.println("Transaction Status : "+transactionDetailsType.getTransactionStatus());
-		System.out.println("Submit Date : "+transactionDetailsType.getSubmitTimeLocal());
+		System.out.println("Transaction Status          : "+transactionDetailsType.getTransactionStatus());
+		System.out.println("Submit Date                 : "+transactionDetailsType.getSubmitTimeLocal());
 	}
 }
