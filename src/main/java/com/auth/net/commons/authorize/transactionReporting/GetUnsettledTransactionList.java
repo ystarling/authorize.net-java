@@ -1,4 +1,4 @@
-package com.auth.net.commons.authorize.net;
+package com.auth.net.commons.authorize.transactionReporting;
 
 import java.util.List;
 

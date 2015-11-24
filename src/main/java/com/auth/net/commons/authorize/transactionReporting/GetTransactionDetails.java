@@ -1,4 +1,4 @@
-package com.auth.net.commons.authorize.net;
+package com.auth.net.commons.authorize.transactionReporting;
 
 import net.authorize.Environment;
 import net.authorize.api.contract.v1.GetTransactionDetailsRequest;
